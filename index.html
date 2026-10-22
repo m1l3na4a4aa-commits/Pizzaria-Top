@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Bella Pizza & Eventos | Tradição Italiana</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Externo -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- NAV BAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <i class="fa-solid fa-pizza-slice"></i>
+                <div class="logo-text">
+                    <span class="main">LA BELLA</span>
+                    <span class="sub">PIZZA & EVENTOS</span>
+                </div>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#menu"><i class="fa-solid fa-utensils"></i> Cardápio</a></li>
+                <li><a href="#eventos"><i class="fa-solid fa-glass-cheers"></i> Eventos & Buffet</a></li>
+                <li><a href="#sobre"><i class="fa-solid fa-landmark"></i> Nossa História</a></li>
+                <li><a href="#dicas-ofertas"><i class="fa-solid fa-fire"></i> Ofertas & Dicas</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a href="#reservas" class="btn btn-outline">Reservar Mesa</a>
+                <button class="cart-btn" onclick="openCart()">
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    <span class="cart-count" id="cartBadge">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="badge-italy"><span class="flag-green"></span><span class="flag-white"></span><span class="flag-red"></span> Autêntica Tradição Italiana</span>
+            <h1>A verdadeira pizza artesanal no seu evento ou na sua mesa</h1>
+            <p>Massa de fermentação natural 48h, ingredientes importados da Itália e forno a lenha de alta temperatura. Leve essa experiência única para seu aniversário, casamento ou celebração.</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary"><i class="fa-solid fa-pizza-slice"></i> Ver Cardápio</a>
+                <a href="#eventos" class="btn btn-gold"><i class="fa-solid fa-calculator"></i> Simular Orçamento de Evento</a>
+            </div>
+            <div class="hero-features">
+                <div class="h-feature"><i class="fa-solid fa-fire-burner"></i> Fermentação Natural 48h</div>
+                <div class="h-feature"><i class="fa-solid fa-award"></i> Farinha Tipo 00 Italiana</div>
+                <div class="h-feature"><i class="fa-solid fa-truck-fast"></i> Buffet Completo em Domicílio</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- BANNER DE OFERTA COM TIMING -->
+    <div class="promo-bar">
+        <div class="promo-container">
+            <div class="promo-info">
+                <i class="fa-solid fa-gift"></i>
+                <span><strong>PROMOÇÃO DO CHEF:</strong> Ganhe 10% OFF no seu primeiro pedido via site com o cupom <strong>ITALIA10</strong></span>
+            </div>
+            <div class="timer" id="countdown">
+                <span>Oferta encerra em: </span>
+                <span id="timerHours">04</span>h : 
+                <span id="timerMinutes">32</span>m : 
+                <span id="timerSeconds">15</span>s
+            </div>
+        </div>
+    </div>
+
+    <!-- CARDÁPIO SECTION -->
+    <section id="menu" class="section">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-title">Sabor inconfundível</span>
+                <h2>Nosso Cardápio Especial</h2>
+                <div class="divider"></div>
+            </div>
+
+            <!-- Filtros de Categoria -->
+            <div class="menu-categories">
+                <button class="cat-btn active" onclick="filterMenu('todas', this)">Todas</button>
+                <button class="cat-btn" onclick="filterMenu('tradicionais', this)">Tradicionais</button>
+                <button class="cat-btn" onclick="filterMenu('gourmet', this)">Gourmet Itália</button>
+                <button class="cat-btn" onclick="filterMenu('doces', this)">Doces Artesanais</button>
+                <button class="cat-btn" onclick="filterMenu('bebidas', this)">Vinhos & Bebidas</button>
+            </div>
+
+            <!-- Grid de Produtos -->
+            <div class="menu-grid" id="menuGrid">
+                <!-- Inserido dinamicamente via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE EVENTOS & CALCULADORA -->
+    <section id="eventos" class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-title">Rodízio & Buffet em Domicílio</span>
+                <h2>Leve a La Bella para seu Evento</h2>
+                <p>Estrutura completa com forno portátil, pizzaiolos profissionais, garçons e todos os insumos para transformar sua festa em uma verdadeira pizzaria italiana.</p>
+                <div class="divider"></div>
+            </div>
+
+            <div class="event-packages">
+                <div class="pkg-card">
+                    <div class="pkg-header">
+                        <h3>Pacote Classico</h3>
+                        <p class="pkg-subtitle">Perfeito para reuniões familiares e aniversários</p>
+                    </div>
+                    <div class="pkg-price">R$ 55 <span>/ pessoa</span></div>
+                    <ul class="pkg-features">
+                        <li><i class="fa-solid fa-check"></i> 8 Sabores Tradicionais de Pizza</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Sabores de Pizzas Doces</li>
+                        <li><i class="fa-solid fa-check"></i> Equipe de Pizzaiolos inclusa</li>
+                        <li><i class="fa-solid fa-check"></i> Duração de 3 horas de evento</li>
+                    </ul>
+                </div>
+
+                <div class="pkg-card featured">
+                    <div class="pkg-badge">Mais Vendido</div>
+                    <div class="pkg-header">
+                        <h3>Pacote Premium Itália</h3>
+                        <p class="pkg-subtitle">Ideal para casamentos e eventos corporativos</p>
+                    </div>
+                    <div class="pkg-price">R$ 75 <span>/ pessoa</span></div>
+                    <ul class="pkg-features">
+                        <li><i class="fa-solid fa-check"></i> 12 Sabores Gourmet & Tradicionais</li>
+                        <li><i class="fa-solid fa-check"></i> Entrada com Focaccias e Antepastos</li>
+                        <li><i class="fa-solid fa-check"></i> 4 Sabores Doces com Gelato</li>
+                        <li><i class="fa-solid fa-check"></i> Pizzaiolo + Garçons inclusos</li>
+                        <li><i class="fa-solid fa-check"></i> Duração de 4 horas de evento</li>
+                    </ul>
+                </div>
+
+                <div class="pkg-card">
+                    <div class="pkg-header">
+                        <h3>Pacote Napoletano Exclusive</h3>
+                        <p class="pkg-subtitle">Uma experiência gastronômica de luxo</p>
+                    </div>
+                    <div class="pkg-price">R$ 98 <span>/ pessoa</span></div>
+                    <ul class="pkg-features">
+                        <li><i class="fa-solid fa-check"></i> Cardápio 100% Customizado</li>
+                        <li><i class="fa-solid fa-check"></i> Prosciutto di Parma & Burratas frescas</li>
+                        <li><i class="fa-solid fa-check"></i> Sommelier de Vinhos harmonizados</li>
+                        <li><i class="fa-solid fa-check"></i> Duração até 5 horas de festa</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- CALCULADORA INTERATIVA DE EVENTOS -->
+            <div class="calculator-box">
+                <div class="calc-header">
+                    <h3><i class="fa-solid fa-calculator"></i> Simule o Valor do seu Evento</h3>
+                    <p>Calcule uma estimativa instantânea para sua festa</p>
+                </div>
+                <div class="calc-body">
+                    <div class="calc-group">
+                        <label for="calcGuests">Número de Convidados: <strong id="guestCountDisplay">40 pessoas</strong></label>
+                        <input type="range" id="calcGuests" min="20" max="200" step="5" value="40" oninput="updateCalculator()">
+                    </div>
+                    <div class="calc-group">
+                        <label for="calcPackage">Escolha o Pacote:</label>
+                        <select id="calcPackage" onchange="updateCalculator()">
+                            <option value="55">Pacote Classico (R$ 55/pessoa)</option>
+                            <option value="75" selected>Pacote Premium Itália (R$ 75/pessoa)</option>
+                            <option value="98">Pacote Napoletano Exclusive (R$ 98/pessoa)</option>
+                        </select>
+                    </div>
+                    <div class="calc-result">
+                        <div class="calc-total">
+                            <span>Estimativa do Investimento:</span>
+                            <h2 id="calcTotalDisplay">R$ 3.000,00</h2>
+                        </div>
+                        <button class="btn btn-gold" onclick="requestEventQuote()">
+                            <i class="fa-brands fa-whatsapp"></i> Solicitar Data no WhatsApp
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE A PIZZARIA & HISTÓRIA -->
+    <section id="sobre" class="section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Pizzaiolo preparando pizza">
+                    <div class="about-experience">
+                        <span class="num">25+</span>
+                        <span class="txt">Anos mantendo o verdadeiro sabor da Itália</span>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <span class="sub-title">Nossa Tradição</span>
+                    <h2>Do Coração de Nápoles para a Sua Mesa</h2>
+                    <p>Fundada em 1998 pela Família Rossi, a **La Bella Pizza** nasceu com o compromisso inegociável de preservar a autêntica tradição napolitana. Cada disco de pizza passa por um processo rigoroso de fermentação lenta de 48 horas, o que garante uma massa leve, crocante por fora e incrivelmente macia por dentro.</p>
+                    <p>Utilizamos apenas molho feito com tomates San Marzano colhidos no solo vulcânico do Monte Vesúvio, muzzarella fior di latte e azeites extra virgem prensados a frio.</p>
+                    
+                    <div class="pills-container">
+                        <div class="pill"><i class="fa-solid fa-seedling"></i> Insumos Orgânicos</div>
+                        <div class="pill"><i class="fa-solid fa-wheat-awn"></i> Farinha 00 Certificada</div>
+                        <div class="pill"><i class="fa-solid fa-temperature-arrow-up"></i> Forno a 480°C</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFERTAS E DICAS DO CHEF -->
+    <section id="dicas-ofertas" class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <span class="sub-title">Conhecimento & Gastronomia</span>
+                <h2>Dicas do Chef & Blog Gastronômico</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="tips-grid">
+                <article class="tip-card">
+                    <div class="tip-img">
+                        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=600&q=80" alt="Vinho e Pizza">
+                        <span class="tip-tag">Harmonização</span>
+                    </div>
+                    <div class="tip-body">
+                        <h3>Qual vinho combina com cada tipo de pizza?</h3>
+                        <p>Pizzas com molho de tomate intenso pedem vinhos com boa acidez como um Chianti italiano. Já pizzas de queijos combinam perfeitamente com Chardonnays mais encorpados.</p>
+                        <button class="btn-link" onclick="openTipModal('vinho')">Ler artigo completo <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </article>
+
+                <article class="tip-card">
+                    <div class="tip-img">
+                        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Massa de fermentação">
+                        <span class="tip-tag">Segredos da Massa</span>
+                    </div>
+                    <div class="tip-body">
+                        <h3>Por que a Fermentação de 48h não estufa?</h3>
+                        <p>A maturação lenta permite que as leveduras quebrem os açúcares e o glúten previamente. O resultado é uma digestão super leve e crocância sem igual.</p>
+                        <button class="btn-link" onclick="openTipModal('massa')">Ler artigo completo <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </article>
+
+                <article class="tip-card">
+                    <div class="tip-img">
+                        <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=600&q=80" alt="Evento e Festa">
+                        <span class="tip-tag">Dica de Eventos</span>
+                    </div>
+                    <div class="tip-body">
+                        <h3>Como calcular a quantidade de pizza por pessoa numa festa?</h3>
+                        <p>Para eventos corporativos ou sociais, a média recomendada é de 5 a 6 fatias por adulto. Descubra os segredos para seu evento não ter sobra nem falta.</p>
+                        <button class="btn-link" onclick="openTipModal('evento')">Ler artigo completo <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO RESERVAS -->
+    <section id="reservas" class="section reservation-section">
+        <div class="container">
+            <div class="reservation-box">
+                <div class="res-info">
+                    <h2>Reserve sua Mesa</h2>
+                    <p>Venha viver a atmosfera romântica e acolhedora do nosso salão decorado no melhor estilo de uma cantina italiana.</p>
+                    <div class="res-details">
+                        <div><i class="fa-solid fa-location-dot"></i> Av. Itália, 1050 - Bairro Jardins</div>
+                        <div><i class="fa-solid fa-phone"></i> (11) 99999-8888</div>
+                        <div><i class="fa-solid fa-clock"></i> Terça a Domingo: 18h30 às 23h30</div>
+                    </div>
+                </div>
+                <form class="res-form" onsubmit="handleReservation(event)">
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <input type="text" required placeholder="Seu nome">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Data</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Horário</label>
+                            <input type="time" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nº de Pessoas</label>
+                            <select>
+                                <option>2 Pessoas</option>
+                                <option>4 Pessoas</option>
+                                <option>6 Pessoas</option>
+                                <option>8+ Pessoas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Telefone / WhatsApp</label>
+                            <input type="tel" required placeholder="(11) 99999-9999">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Confirmar Reserva</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="brand-logo footer-logo">
+                    <i class="fa-solid fa-pizza-slice"></i>
+                    <div class="logo-text">
+                        <span class="main">LA BELLA</span>
+                        <span class="sub">PIZZA & EVENTOS</span>
+                    </div>
+                </div>
+                <p>Preservando a verdadeira arte da pizza artesanal italiana e realizando eventos inesquecíveis.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#menu">Cardápio Completo</a></li>
+                    <li><a href="#eventos">Buffet de Eventos</a></li>
+                    <li><a href="#sobre">Nossa História</a></li>
+                    <li><a href="#dicas-ofertas">Dicas do Chef</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Atendimento</h4>
+                <p><strong>Delivery e Balcão:</strong> Ter a Dom - 18h às 23h30</p>
+                <p><strong>Eventos em Domicílio:</strong> Atendemos 7 dias por semana sob agendamento prévio.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 La Bella Pizza & Eventos. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL DO CARRINHO DE COMPRAS -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-overlay" onclick="closeCart()"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3><i class="fa-solid fa-basket-shopping"></i> Seu Pedido</h3>
+                <button class="close-btn" onclick="closeCart()">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItemsList">
+                <!-- Itens inseridos por JS -->
+            </div>
+            <div class="cart-footer">
+                <div class="coupon-box">
+                    <input type="text" id="couponInput" placeholder="Cupom de Desconto">
+                    <button onclick="applyCoupon()">Aplicar</button>
+                </div>
+                <div class="cart-summary">
+                    <div class="summary-line">
+                        <span>Subtotal:</span>
+                        <span id="cartSubtotal">R$ 0,00</span>
+                    </div>
+                    <div class="summary-line discount" id="discountRow" style="display: none;">
+                        <span>Desconto (10%):</span>
+                        <span id="cartDiscount">-R$ 0,00</span>
+                    </div>
+                    <div class="summary-line total">
+                        <span>Total:</span>
+                        <span id="cartTotal">R$ 0,00</span>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-block" onclick="checkoutWhatsApp()">
+                    <i class="fa-brands fa-whatsapp"></i> Finalizar Pedido no WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE ARTIGOS/DICAS -->
+    <div class="article-modal" id="articleModal">
+        <div class="article-overlay" onclick="closeTipModal()"></div>
+        <div class="article-box">
+            <button class="close-btn" onclick="closeTipModal()">&times;</button>
+            <div id="articleContent"></div>
+        </div>
+    </div>
+
+    <!-- JS Externo -->
+    <script src="script.js"></script>
+</body>
+</html>
