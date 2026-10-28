@@ -7,24 +7,20 @@ on:
     branches: [ "main" ]
 
 jobs:
-validar-html:
+  validar-html:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Copia o código do seu repositório para a máquina virtual
-    - name: Copiar código
-      uses: actions/checkout@v4
+      - name: Copiar código
+        uses: actions/checkout@v4
 
-    # 2. Configura o Node.js (necessário para rodar a ferramenta de validação)
-    - name: Configurar Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-    # 3. Instala a ferramenta HTMLHint globalmente
-    - name: Instalar validador de HTML
-      run: npm install -g htmlhint
+      - name: Instalar validador de HTML
+        run: npm install -g htmlhint
 
-    # 4. Executa a validação no seu ficheiro index.html
-    - name: Verificar erros no HTML
-      run: htmlhint index.html
+      - name: Verificar erros no HTML
+        run: htmlhint index.html
